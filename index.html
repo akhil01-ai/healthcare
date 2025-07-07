@@ -183,7 +183,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <h2 class="text-4xl font-bold text-green-800 mb-8">Get in Touch with NatureBloom</h2>
             <p class="text-lg text-gray-700 mb-8">Have questions or want to learn more about our products? We'd love to hear from you!</p>
 
-            <form action="#" method="POST" class="space-y-6 text-left">
+            <form id="contact-form" action="#" method="POST" class="space-y-6 text-left">
                 <div>
                     <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
                     <input type="text" id="name" name="name" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-base" placeholder="Your Name" required>
@@ -202,6 +202,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </button>
                 </div>
             </form>
+
+            <!-- Thank You Message -->
+            <div id="thank-you-message" class="hidden mt-8 p-4 bg-green-100 text-green-800 rounded-xl shadow-md">
+                <p class="text-lg font-semibold">Thank you for your message! We will get back to you shortly.</p>
+            </div>
 
             <div class="mt-12 text-gray-700">
                 <p class="mb-2"><strong>Email:</strong> info@naturebloomorganics.com</p>
@@ -256,6 +261,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     behavior: 'smooth'
                 });
             });
+        });
+
+        // --- Contact Form Submission and Thank You Message ---
+        const contactForm = document.getElementById('contact-form');
+        const thankYouMessage = document.getElementById('thank-you-message');
+
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Hide the form and show the thank you message
+            contactForm.classList.add('hidden');
+            thankYouMessage.classList.remove('hidden');
+
+            // Optionally, clear form fields after submission (though form is hidden)
+            contactForm.reset();
         });
     </script>
 </body>
