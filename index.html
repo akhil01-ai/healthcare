@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -53,7 +52,6 @@
             <div class="hidden md:flex space-x-6">
                 <a href="#home" class="text-gray-600 hover:text-green-700 font-medium transition duration-300 ease-in-out">Home</a>
                 <a href="#products" class="text-gray-600 hover:text-green-700 font-medium transition duration-300 ease-in-out">Products</a>
-                <a href="#skincare-advisor" class="text-gray-600 hover:text-green-700 font-medium transition duration-300 ease-in-out">Skincare Advisor</a>
                 <a href="#contact" class="text-gray-600 hover:text-green-700 font-medium transition duration-300 ease-in-out">Contact Us</a>
             </div>
 
@@ -69,7 +67,6 @@
         <div id="mobile-menu" class="hidden md:hidden bg-white py-2 mt-2 rounded-xl shadow-lg mx-4">
             <a href="#home" class="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg mx-2 transition duration-300 ease-in-out">Home</a>
             <a href="#products" class="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg mx-2 transition duration-300 ease-in-out">Products</a>
-            <a href="#skincare-advisor" class="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg mx-2 transition duration-300 ease-in-out">Skincare Advisor</a>
             <a href="#contact" class="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg mx-2 transition duration-300 ease-in-out">Contact Us</a>
         </div>
     </nav>
@@ -139,24 +136,6 @@
                     <h3 class="text-2xl font-semibold text-green-700 mb-2">Balancing Facial Toner</h3>
                     <p class="text-gray-600 mb-4">Prepares skin for moisturizers, balances pH, and refines pores.</p>
                     <p class="text-green-800 text-2xl font-bold mb-4">₹ 2,350</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skincare Routine Advisor Section (LLM Integration) -->
-    <section id="skincare-advisor" class="py-16 bg-gradient-to-r from-lime-50 to-green-100 flex flex-col items-center justify-center px-4 rounded-xl shadow-lg mx-4 my-8">
-        <div class="container mx-auto text-center max-w-3xl">
-            <h2 class="text-4xl font-bold text-green-800 mb-8">✨ Your Personalized Skincare Routine</h2>
-            <p class="text-lg text-gray-700 mb-6">Tell us about your skin concerns or type, and we'll suggest a NatureBloom Organics routine just for you!</p>
-            <div class="w-full max-w-md mx-auto">
-                <textarea id="skin-concern-input" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-base mb-4" placeholder="e.g., 'Oily skin with occasional breakouts', 'Dry and sensitive skin', 'Anti-aging concerns'"></textarea>
-                <button id="get-routine-button" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
-                    Get My Routine ✨
-                </button>
-                <div id="routine-loading" class="loading-indicator">Generating routine...</div>
-                <div id="skincare-routine-output" class="mt-8 p-6 bg-white rounded-xl shadow-lg text-left text-gray-700 leading-relaxed hidden">
-                    <!-- Skincare routine will be displayed here -->
                 </div>
             </div>
         </div>
@@ -257,63 +236,6 @@
                     behavior: 'smooth'
                 });
             });
-        });
-
-        // --- Gemini API Integration (Skincare Routine Advisor remains) ---
-
-        // Skincare Routine Advisor
-        const skinConcernInput = document.getElementById('skin-concern-input');
-        const getRoutineButton = document.getElementById('get-routine-button');
-        const skincareRoutineOutput = document.getElementById('skincare-routine-output');
-        const routineLoadingIndicator = document.getElementById('routine-loading');
-
-        getRoutineButton.addEventListener('click', async () => {
-            const userConcern = skinConcernInput.value.trim();
-            if (!userConcern) {
-                skincareRoutineOutput.innerHTML = '<p class="text-red-500">Please enter your skin concern or type.</p>';
-                skincareRoutineOutput.classList.remove('hidden');
-                return;
-            }
-
-            const prompt = `Based on the following skin concern/type: "${userConcern}", suggest a simple 3-step skincare routine (Cleanser, Moisturizer, Serum) using NatureBloom Organics products. Recommend specific product types from our range (Revitalizing Herbal Cleanser, Deep Hydration Cream, Radiance Boosting Serum, Youthful Eye Cream, Nourishing Lip Balm, Balancing Facial Toner) and briefly explain why each step is beneficial for the user's concern. Format the output clearly with each step on a new line.`;
-
-            routineLoadingIndicator.style.display = 'block'; // Show loading
-            getRoutineButton.disabled = true; // Disable button
-            skincareRoutineOutput.classList.add('hidden'); // Hide previous output
-
-            try {
-                let chatHistory = [];
-                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-                const payload = { contents: chatHistory };
-                const apiKey = ""; // Canvas will provide this at runtime
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                const result = await response.json();
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    const generatedText = result.candidates[0].content.parts[0].text;
-                    skincareRoutineOutput.innerHTML = `<h3 class="text-xl font-semibold text-green-700 mb-4">Your Custom Routine:</h3><p>${generatedText.replace(/\n/g, '<br>')}</p>`;
-                    skincareRoutineOutput.classList.remove('hidden'); // Show output
-                } else {
-                    console.error('Gemini API response structure unexpected:', result);
-                    skincareRoutineOutput.innerHTML = '<p class="text-red-500">Failed to generate routine. Please try again.</p>';
-                    skincareRoutineOutput.classList.remove('hidden');
-                }
-            } catch (error) {
-                console.error('Error calling Gemini API:', error);
-                skincareRoutineOutput.innerHTML = '<p class="text-red-500">Error generating routine. Please check your connection.</p>';
-                skincareRoutineOutput.classList.remove('hidden');
-            } finally {
-                routineLoadingIndicator.style.display = 'none'; // Hide loading
-                getRoutineButton.disabled = false; // Re-enable button
-            }
         });
     </script>
 </body>
