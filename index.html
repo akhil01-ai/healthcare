@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NatureBloom Organics - Pure Skincare from Nature</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+        }
+        /* Custom styles for rounded corners on images within product cards */
+        .product-image {
+            border-radius: 0.75rem; /* Tailwind's rounded-xl */
+        }
+        /* Ensure sections take full height on smaller screens if content is short */
+        section {
+            min-height: calc(100vh - 64px); /* Adjust for header height on smaller screens */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-top: 64px; /* Add padding to account for fixed header */
+        }
+        /* Adjust for hero section specifically to take full viewport height */
+        #home {
+            min-height: 100vh;
+            padding-top: 0; /* Hero doesn't need top padding due to fixed header */
+        }
+        .loading-indicator {
+            display: none; /* Hidden by default */
+            margin-top: 0.5rem;
+            color: #10B981; /* Green-500 */
+            font-weight: 500;
+            font-size: 0.875rem; /* text-sm */
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-green-50 to-lime-100 text-gray-800">
+
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-md p-4 fixed w-full top-0 z-50 rounded-b-xl">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <!-- Logo/Brand Name -->
+            <a href="#home" class="text-2xl font-bold text-green-700">NatureBloom Organics</a>
+
+            <!-- Navigation Links -->
+            <div class="hidden md:flex space-x-6">
+                <a href="#home" class="text-gray-600 hover:text-green-700 font-medium transition duration-300 ease-in-out">Home</a>
+                <a href="#products" class="text-gray-600 hover:text-green-700 font-medium transition duration-300 ease-in-out">Products</a>
+                <a href="#skincare-advisor" class="text-gray-600 hover:text-green-700 font-medium transition duration-300 ease-in-out">Skincare Advisor</a>
+                <a href="#contact" class="text-gray-600 hover:text-green-700 font-medium transition duration-300 ease-in-out">Contact Us</a>
+            </div>
+
+            <!-- Mobile Menu Button (Hamburger) -->
+            <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-green-700 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-2 mt-2 rounded-xl shadow-lg mx-4">
+            <a href="#home" class="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg mx-2 transition duration-300 ease-in-out">Home</a>
+            <a href="#products" class="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg mx-2 transition duration-300 ease-in-out">Products</a>
+            <a href="#skincare-advisor" class="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg mx-2 transition duration-300 ease-in-out">Skincare Advisor</a>
+            <a href="#contact" class="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg mx-2 transition duration-300 ease-in-out">Contact Us</a>
+        </div>
+    </nav>
+
+    <!-- Homepage Section (Hero) -->
+    <section id="home" class="relative bg-cover bg-center text-white flex items-center justify-center"
+        style="background-image: url('https://placehold.co/1920x1080/6B8E23/FFFFFF?text=NatureBloom+Organics+Hero');">
+        <!-- Overlay for better text readability -->
+        <div class="absolute inset-0 bg-black opacity-40"></div>
+        <div class="container mx-auto text-center relative z-10 p-8 md:p-12 lg:p-16 rounded-xl bg-white bg-opacity-20 backdrop-blur-sm shadow-lg max-w-4xl mx-4">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">Embrace Nature's Touch for Radiant Skin</h1>
+            <p class="text-lg md:text-xl mb-8 font-light">Discover our handcrafted organic skincare, free from harsh chemicals and full of natural goodness.</p>
+            <a href="#products" class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+                Explore Our Products
+            </a>
+        </div>
+    </section>
+
+    <!-- Products Page Section -->
+    <section id="products" class="py-16 bg-white flex flex-col items-center justify-center px-4 rounded-xl shadow-lg mx-4 my-8">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-bold text-green-800 mb-12">Our Pure & Potent Products</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Product Card 1 -->
+                <div class="product-card bg-green-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-2 cursor-pointer">
+                    <img src="https://placehold.co/400x300/8BC34A/FFFFFF?text=Revitalizing+Cleanser" alt="Herbal Face Cleanser" class="w-full h-48 object-cover mb-6 product-image">
+                    <h3 class="text-2xl font-semibold text-green-700 mb-2 mt-4">Revitalizing Herbal Cleanser</h3>
+                    <p id="cleanser-description" class="text-gray-600 mb-4">Gently purifies and refreshes your skin with botanical extracts. Perfect for daily use.</p>
+                    <p class="text-green-800 text-2xl font-bold mb-4">₹ 1,999</p>
+                </div>
+
+                <!-- Product Card 2 -->
+                <div class="product-card bg-green-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-2 cursor-pointer">
+                    <img src="https://placehold.co/400x300/A2D2FF/FFFFFF?text=Deep+Hydration+Cream" alt="Nourishing Moisturizer" class="w-full h-48 object-cover mb-6 product-image">
+                    <h3 class="text-2xl font-semibold text-green-700 mb-2">Deep Hydration Cream</h3>
+                    <p class="text-gray-600 mb-4">Locks in moisture for all-day softness and a healthy, dewy glow. Ideal for dry skin.</p>
+                    <p class="text-green-800 text-2xl font-bold mb-4">₹ 3,250</p>
+                </div>
+
+                <!-- Product Card 3 -->
+                <div class="product-card bg-green-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-2 cursor-pointer">
+                    <img src="https://placehold.co/400x300/FFD700/FFFFFF?text=Radiance+Serum" alt="Brightening Serum" class="w-full h-48 object-cover mb-6 product-image">
+                    <h3 class="text-2xl font-semibold text-green-700 mb-2">Radiance Boosting Serum</h3>
+                    <p class="text-gray-600 mb-4">Infused with Vitamin C to brighten complexion and reduce the appearance of dark spots.</p>
+                    <p class="text-green-800 text-2xl font-bold mb-4">₹ 4,000</p>
+                </div>
+
+                <!-- Product Card 4 -->
+                <div class="product-card bg-green-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-2 cursor-pointer">
+                    <img src="https://placehold.co/400x300/C0C0C0/FFFFFF?text=Youthful+Eye+Cream" alt="Anti-Aging Eye Cream" class="w-full h-48 object-cover mb-6 product-image">
+                    <h3 class="text-2xl font-semibold text-green-700 mb-2">Youthful Eye Cream</h3>
+                    <p class="text-gray-600 mb-4">Reduces fine lines and puffiness, revealing brighter, younger-looking eyes.</p>
+                    <p class="text-green-800 text-2xl font-bold mb-4">₹ 2,700</p>
+                </div>
+
+                <!-- Product Card 5 -->
+                <div class="product-card bg-green-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-2 cursor-pointer">
+                    <img src="https://placehold.co/400x300/FFB6C1/FFFFFF?text=Nourishing+Lip+Balm" alt="Organic Lip Balm" class="w-full h-48 object-cover mb-6 product-image">
+                    <h3 class="text-2xl font-semibold text-green-700 mb-2">Nourishing Lip Balm</h3>
+                    <p class="text-gray-600 mb-4">Keeps lips soft, smooth, and protected with natural oils and butters.</p>
+                    <p class="text-green-800 text-2xl font-bold mb-4">₹ 999</p>
+                </div>
+
+                <!-- Product Card 6 -->
+                <div class="product-card bg-green-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-2 cursor-pointer">
+                    <img src="https://placehold.co/400x300/ADD8E6/FFFFFF?text=Balancing+Toner" alt="Balancing Toner" class="w-full h-48 object-cover mb-6 product-image">
+                    <h3 class="text-2xl font-semibold text-green-700 mb-2">Balancing Facial Toner</h3>
+                    <p class="text-gray-600 mb-4">Prepares skin for moisturizers, balances pH, and refines pores.</p>
+                    <p class="text-green-800 text-2xl font-bold mb-4">₹ 2,350</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skincare Routine Advisor Section (LLM Integration) -->
+    <section id="skincare-advisor" class="py-16 bg-gradient-to-r from-lime-50 to-green-100 flex flex-col items-center justify-center px-4 rounded-xl shadow-lg mx-4 my-8">
+        <div class="container mx-auto text-center max-w-3xl">
+            <h2 class="text-4xl font-bold text-green-800 mb-8">✨ Your Personalized Skincare Routine</h2>
+            <p class="text-lg text-gray-700 mb-6">Tell us about your skin concerns or type, and we'll suggest a NatureBloom Organics routine just for you!</p>
+            <div class="w-full max-w-md mx-auto">
+                <textarea id="skin-concern-input" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-base mb-4" placeholder="e.g., 'Oily skin with occasional breakouts', 'Dry and sensitive skin', 'Anti-aging concerns'"></textarea>
+                <button id="get-routine-button" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+                    Get My Routine ✨
+                </button>
+                <div id="routine-loading" class="loading-indicator">Generating routine...</div>
+                <div id="skincare-routine-output" class="mt-8 p-6 bg-white rounded-xl shadow-lg text-left text-gray-700 leading-relaxed hidden">
+                    <!-- Skincare routine will be displayed here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section (Optional, but good for a landing page) -->
+    <section id="about" class="py-16 bg-gradient-to-r from-lime-50 to-green-100 flex flex-col items-center justify-center px-4 rounded-xl shadow-lg mx-4 my-8">
+        <div class="container mx-auto text-center max-w-3xl">
+            <h2 class="text-4xl font-bold text-green-800 mb-8">Our Story: Nature's Purity, Your Beauty</h2>
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                At NatureBloom Organics, we believe in harnessing the power of nature to create skincare that truly nourishes.
+                Our journey began with a passion for pure, sustainable ingredients and a commitment to crafting products
+                that are gentle on your skin and kind to the planet. Every product is lovingly made with the finest organic
+                extracts, free from harmful chemicals, parabens, and synthetic fragrances.
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                We are dedicated to transparency, quality, and helping you achieve healthy, glowing skin the natural way.
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Us Page Section -->
+    <section id="contact" class="py-16 bg-white flex flex-col items-center justify-center px-4 rounded-xl shadow-lg mx-4 my-8">
+        <div class="container mx-auto text-center max-w-2xl">
+            <h2 class="text-4xl font-bold text-green-800 mb-8">Get in Touch with NatureBloom</h2>
+            <p class="text-lg text-gray-700 mb-8">Have questions or want to learn more about our products? We'd love to hear from you!</p>
+
+            <form action="#" method="POST" class="space-y-6 text-left">
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                    <input type="text" id="name" name="name" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-base" placeholder="Your Name" required>
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                    <input type="email" id="email" name="email" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-base" placeholder="your.email@example.com" required>
+                </div>
+                <div>
+                    <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                    <textarea id="message" name="message" rows="5" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-base" placeholder="Your message..." required></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+                        Send Message
+                    </button>
+                </div>
+            </form>
+
+            <div class="mt-12 text-gray-700">
+                <p class="mb-2"><strong>Email:</strong> info@naturebloomorganics.com</p>
+                <p class="mb-2"><strong>Phone:</strong> +1 (555) 123-4567</p>
+                <p><strong>Address:</strong> 123 Organic Lane, Green Valley, CA 90210</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-green-800 text-white py-8 mt-8 rounded-t-xl">
+        <div class="container mx-auto text-center px-4">
+            <p class="mb-4">&copy; 2025 NatureBloom Organics. All rights reserved.</p>
+            <div class="flex justify-center space-x-6">
+                <a href="#" class="text-white hover:text-green-300 transition duration-300 ease-in-out">Facebook</a>
+                <a href="#" class="text-white hover:text-green-300 transition duration-300 ease-in-out">Instagram</a>
+                <a href="#" class="text-white hover:text-green-300 transition duration-300 ease-in-out">Twitter</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                // Close mobile menu after clicking a link
+                if (mobileMenu.classList.contains('flex')) {
+                    mobileMenu.classList.remove('flex');
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex'); // Use flex to make it a column
+            mobileMenu.classList.toggle('flex-col'); // Stack items vertically
+        });
+
+        // --- Product Card Click to Contact Us ---
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('click', function() {
+                document.querySelector('#contact').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // --- Gemini API Integration (Skincare Routine Advisor remains) ---
+
+        // Skincare Routine Advisor
+        const skinConcernInput = document.getElementById('skin-concern-input');
+        const getRoutineButton = document.getElementById('get-routine-button');
+        const skincareRoutineOutput = document.getElementById('skincare-routine-output');
+        const routineLoadingIndicator = document.getElementById('routine-loading');
+
+        getRoutineButton.addEventListener('click', async () => {
+            const userConcern = skinConcernInput.value.trim();
+            if (!userConcern) {
+                skincareRoutineOutput.innerHTML = '<p class="text-red-500">Please enter your skin concern or type.</p>';
+                skincareRoutineOutput.classList.remove('hidden');
+                return;
+            }
+
+            const prompt = `Based on the following skin concern/type: "${userConcern}", suggest a simple 3-step skincare routine (Cleanser, Moisturizer, Serum) using NatureBloom Organics products. Recommend specific product types from our range (Revitalizing Herbal Cleanser, Deep Hydration Cream, Radiance Boosting Serum, Youthful Eye Cream, Nourishing Lip Balm, Balancing Facial Toner) and briefly explain why each step is beneficial for the user's concern. Format the output clearly with each step on a new line.`;
+
+            routineLoadingIndicator.style.display = 'block'; // Show loading
+            getRoutineButton.disabled = true; // Disable button
+            skincareRoutineOutput.classList.add('hidden'); // Hide previous output
+
+            try {
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                const payload = { contents: chatHistory };
+                const apiKey = ""; // Canvas will provide this at runtime
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const generatedText = result.candidates[0].content.parts[0].text;
+                    skincareRoutineOutput.innerHTML = `<h3 class="text-xl font-semibold text-green-700 mb-4">Your Custom Routine:</h3><p>${generatedText.replace(/\n/g, '<br>')}</p>`;
+                    skincareRoutineOutput.classList.remove('hidden'); // Show output
+                } else {
+                    console.error('Gemini API response structure unexpected:', result);
+                    skincareRoutineOutput.innerHTML = '<p class="text-red-500">Failed to generate routine. Please try again.</p>';
+                    skincareRoutineOutput.classList.remove('hidden');
+                }
+            } catch (error) {
+                console.error('Error calling Gemini API:', error);
+                skincareRoutineOutput.innerHTML = '<p class="text-red-500">Error generating routine. Please check your connection.</p>';
+                skincareRoutineOutput.classList.remove('hidden');
+            } finally {
+                routineLoadingIndicator.style.display = 'none'; // Hide loading
+                getRoutineButton.disabled = false; // Re-enable button
+            }
+        });
+    </script>
+</body>
+</html>
